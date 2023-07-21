@@ -1,0 +1,74 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+library(gapminder)
+data("gapminder")
+
+#Data overview
+
+summary(gapminder)
+glimpse(gapminder)
+names(gapminder)
+head(gapminder)
+print(gapminder)
+
+#Centrality
+
+mean(gapminder$pop)
+mean(gapminder$gdpPercap)
+mean(gapminder$lifeExp)
+
+median(gapminder$pop)
+median(gapminder$gdpPercap)
+median(gapminder$lifeExp)
+var(gapminder$pop)
+var(gapminder$gdpPercap)
+var(gapminder$lifeExp)
+summary(gapminder$pop)
+cor.test(gapminder$gdpPercap,gapminder$lifeExp)
+
+
+#Create a subset of the data frame
+
+library(gapminder)
+data("gapminder")
+
+gapminder_3 <- gapminder[25:48,3:6, drop= FALSE]
+view(gapminder_3)
+print(gapminder_3)
+head(gapminder_3)
+
+
+#Create new column names in the new data frame
+
+library(tidyverse)
+ gapminder_3 %>% 
+mutate(Population= pop,Life_Expectancy=lifeExp,GDP=gdpPercap) %>% 
+select(Population,Life_Expectancy,GDP)
+
+head(gapminder_3)
+print(gapminder_3)
+
+# summary of new data frame
+
+summary(gapminder_3)
+
+# Assigning new columns names
+
+gapminder_4 <- c(gapminder_3 %>% 
+mutate(Population= pop,Life_Expectancy=lifeExp,GDP=gdpPercap) %>% 
+select(Population,Life_Expectancy,GDP))
+print(gapminder_4)
+glimpse (gapminder_4)
+head
+
+# comparing Life Expectancy and GDP in new data frame
+
+gapminder_4[c("Life_Expectancy","GDP")]
+
+# comparing lifeExp and gdpPercap in original data frame
+gapminder[c("lifeExp","gdpPercap")]
+
